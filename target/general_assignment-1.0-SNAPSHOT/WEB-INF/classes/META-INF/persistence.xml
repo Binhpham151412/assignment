@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+             version="2.2">
+    <persistence-unit name="assignment">
+
+<!--        <class>com.backend.general_assignment.entity.DichVuEntity</class>-->
+<!--        <class>com.backend.general_assignment.entity.IdClass.SuDungDichVuId</class>-->
+<!--        <class>com.backend.general_assignment.entity.IdClass.SuDungMayId</class>-->
+<!--        <class>com.backend.general_assignment.entity.KhachHangEntity</class>-->
+<!--        <class>com.backend.general_assignment.entity.MayEntity</class>-->
+<!--        <class>com.backend.general_assignment.entity.SuDungDichVuEntity</class>-->
+<!--        <class>com.backend.general_assignment.entity.SuDungMayEntity</class>-->
+
+        <properties>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/assignment" />
+            <property name="javax.persistence.jdbc.user" value="root" />
+            <property name="javax.persistence.jdbc.password" value="123456789" />
+            <!--            <property name="javax.persistence.jdbc.password" value="root" />-->
+
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+            <property name="javax.persistence.schema-generation.database.action" value="none"/>
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.format_sql" value="true" />
+
+        </properties>
+    </persistence-unit>
+</persistence>

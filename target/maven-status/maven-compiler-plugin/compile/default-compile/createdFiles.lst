@@ -1,0 +1,13 @@
+com\backend\general_assignment\entity\DichVuEntity.class
+com\backend\general_assignment\entity\IdClass\SuDungMayId.class
+com\backend\general_assignment\entity\KhachHangEntity.class
+com\backend\general_assignment\config\WebAppConfig.class
+com\backend\general_assignment\entity\MayEntity.class
+com\backend\general_assignment\config\WebMvcConfig.class
+com\backend\general_assignment\config\JpaConfig.class
+com\backend\general_assignment\config\WebAppInitializer.class
+com\backend\general_assignment\entity\IdClass\SuDungDichVuId.class
+com\backend\general_assignment\entity\SuDungMayEntity.class
+com\backend\general_assignment\controller\TestController.class
+com\backend\general_assignment\HelloServlet.class
+com\backend\general_assignment\entity\SuDungDichVuEntity.class
