@@ -36,32 +36,31 @@
             <tr>
                 <th>Mã Khách Hàng</th>
                 <th>Mã Máy</th>
-                <th>Ngày Sử Dụng</th>
                 <th>Thời Gian SD</th>
+                <th>Ngày Sử Dụng</th>
                 <th>Giờ Bắt Đầu SD</th>
                 <th>Chỉnh Sửa</th>
                 <th>Xóa</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${listKH}" var="item">
-                <tr>
-                    <td>${item.maKH}</td>
-                    <td>${item.tenKH}</td>
-                    <td>${item.soDT}</td>
-                    <td>${item.email}</td>
-                    <td>${item.diaChi}</td>
+            <c:forEach items="${listSDM}" var="item">
+                    <td>${item.suDungMay_khachHang.tenKH}</td>
+                    <td>${item.suDungMay_may.maMay}</td>
+                    <td>${item.thoiGianSD}</td>
+                    <td>${item.ngayBDSD}</td>
+                    <td>${item.gioBDSD}</td>
                     <td>
                         <button class="btn btn-warning">
                             <a style="text-decoration: none" class="text-white"
-                               href="${pageContext.request.contextPath}/khach-hang/edit/${item.maKH}">Update
+                               href="${pageContext.request.contextPath}/dang-ky-su-dung-may/edit/sd">Update
                             </a>
                         </button>
                     </td>
                     <td>
                         <button class="btn btn-danger">
                             <a style="text-decoration: none" class="text-white"
-                               href="${pageContext.request.contextPath}/khach-hang/delete/${item.maKH}">Delete
+                               href="${pageContext.request.contextPath}/dang-ky-su-dung-may/delete/sdf">Delete
                             </a>
                         </button>
                     </td>

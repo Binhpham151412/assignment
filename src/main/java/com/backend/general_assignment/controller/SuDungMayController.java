@@ -7,6 +7,7 @@ import com.backend.general_assignment.service.MayService;
 import com.backend.general_assignment.service.SuDungMayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -53,8 +55,8 @@ public class SuDungMayController {
             modelAndView = new ModelAndView("sudungmay/add");
             return modelAndView;
         }
-//        suDungMayEntity.setNgayBDSD(LocalDate.now());
-//        suDungMayEntity.setGioBDSD(LocalTime.now());
+        suDungMayEntity.setNgayBDSD(LocalDate.now());
+        suDungMayEntity.setGioBDSD(LocalTime.now());
         suDungMayService.save(suDungMayEntity);
         return "redirect:/dang-ky-su-dung-may/list";
     }

@@ -3,6 +3,8 @@ package com.backend.general_assignment.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.format.FormatterRegistry;
+import org.springframework.format.datetime.standard.DateTimeFormatterRegistrar;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.context.request.async.TimeoutCallableProcessingInterceptor;
 import org.springframework.web.multipart.MultipartResolver;
@@ -47,4 +49,5 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public MultipartResolver multipartResolver() {
         return new CommonsMultipartResolver();
     }
+
 }

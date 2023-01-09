@@ -1,7 +1,5 @@
 package com.backend.general_assignment.entity.IdClass;
 
-import com.backend.general_assignment.entity.DichVuEntity;
-import com.backend.general_assignment.entity.KhachHangEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,9 +15,9 @@ import java.time.LocalTime;
 @AllArgsConstructor
 public class SuDungDichVuId implements Serializable {
 
-    private DichVuEntity SuDungDV_maDV;
+    private String SuDungDV_maDV;
 
-    private KhachHangEntity dichVu_khachHang;
+    private String dichVu_khachHang;
 
     private LocalDate ngaySD;
 

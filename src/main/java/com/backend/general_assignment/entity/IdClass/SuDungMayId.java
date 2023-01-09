@@ -21,8 +21,8 @@ public class SuDungMayId implements Serializable {
 
     private LocalTime gioBDSD;
 
-    private MayEntity suDungMay_may;
+    private String suDungMay_may;
 
-    private KhachHangEntity suDungMay_khachHang;
+    private String suDungMay_khachHang;
 
 }
