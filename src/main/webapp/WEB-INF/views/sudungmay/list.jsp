@@ -15,13 +15,13 @@
 
 <%@include file="../../../common/nav-bar.jsp" %>
 <div class="container-fluid w-50 text-center">
-    <h3 class="text-center text-warning fw-bold mt-5">Danh Sách Đăng Ký Sử Dụng Máy</h3>
+    <h3 class="text-center text-secondary fw-bold mt-5">Danh Sách Đăng Ký Sử Dụng Máy</h3>
 
-    <c:if test="${not empty msg_delete}">
-        <span class="text-warning text-center">${msg_delete}</span>
+    <c:if test="${not empty msg_deleteSDM}">
+        <span class="text-secondary text-center">${msg_deleteSDM}</span>
     </c:if>
     <c:if test="${not empty msg_update}">
-        <span class="text-warning text-center">${msg_update}</span>
+        <span class="text-secondary text-center">${msg_update}</span>
     </c:if>
 
     <%--    search--%>
@@ -45,36 +45,44 @@
             </thead>
             <tbody>
             <c:forEach items="${listSDM}" var="item">
-                    <td>${item.suDungMay_khachHang.tenKH}</td>
-                    <td>${item.suDungMay_may.maMay}</td>
-                    <td>${item.thoiGianSD}</td>
-                    <td>${item.ngayBDSD}</td>
-                    <td>${item.gioBDSD}</td>
-                    <td>
-                        <button class="btn btn-warning">
-                            <a style="text-decoration: none" class="text-white"
-                               href="${pageContext.request.contextPath}/dang-ky-su-dung-may/edit/sd">Update
-                            </a>
-                        </button>
-                    </td>
-                    <td>
-                        <button class="btn btn-danger">
-                            <a style="text-decoration: none" class="text-white"
-                               href="${pageContext.request.contextPath}/dang-ky-su-dung-may/delete/sdf">Delete
-                            </a>
-                        </button>
-                    </td>
+                <td>${item.suDungMay_khachHang.maKH}</td>
+                <td>${item.suDungMay_may.maMay}</td>
+                <td>${item.thoiGianSD}</td>
+                <td>${item.ngayBDSD}</td>
+                <td>${item.gioBDSD}</td>
+                <td>
+                    <button class="btn btn-secondary">
+                        <a style="text-decoration: none" class="text-white"
+                           href="${pageContext.request.contextPath}/dang-ky-su-dung-may/edit?idKH=${item.suDungMay_khachHang.maKH}&idMay=${item.suDungMay_may.maMay}&ngaySD=${item.ngayBDSD}&gioSD=${item.gioBDSD}">
+                            Update
+                        </a>
+                    </button>
+                </td>
+                <td>
+                    <button class="btn btn-danger">
+                        <a style="text-decoration: none" class="text-white" onclick="return ConfirmDelete()"
+                           href="${pageContext.request.contextPath}/dang-ky-su-dung-may/delete?idKH=${item.suDungMay_khachHang.maKH}&idMay=${item.suDungMay_may.maMay}&ngaySD=${item.ngayBDSD}&gioSD=${item.gioBDSD}">
+                            Delete
+                        </a>
+                    </button>
+                </td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
         <div class="mt-3">
-            <a class="btn btn-warning float-start" href="${pageContext.request.contextPath}/dang-ky-su-dung-may/add">Đăng Ký Thuê Máy</a>
-            <a class="btn btn-warning float-end" href="${pageContext.request.contextPath}/dang-ky-su-dung-may/list">Danh Sách
+            <a class="btn btn-secondary float-start" href="${pageContext.request.contextPath}/dang-ky-su-dung-may/add">Đăng
+                Ký Thuê Máy</a>
+            <a class="btn btn-secondary float-end" href="${pageContext.request.contextPath}/dang-ky-su-dung-may/list">Danh
+                Sách
                 Đăng Ký Dịch Vụ</a>
         </div>
     </div>
-
 </div>
 </body>
+<script>
+    function ConfirmDelete() {
+        return confirm("Are you sure you want to delete?");
+    }
+</script>
 </html>

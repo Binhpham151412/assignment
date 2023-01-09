@@ -27,7 +27,7 @@ public class SuDungMayEntity {
     private LocalDate ngayBDSD;
 
     @Id
-    @DateTimeFormat(pattern = "HH:mm")
+    @DateTimeFormat(pattern = "HH:mm:ss")
     private LocalTime gioBDSD;
 
     @Id

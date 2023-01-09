@@ -70,7 +70,7 @@
                     </td>
                     <td>
                         <button class="btn btn-danger">
-                            <a style="text-decoration: none" class="text-white"
+                            <a style="text-decoration: none" class="text-white" onclick="return ConfirmDelete();"
                                href="${pageContext.request.contextPath}/dich-vu/delete/${item.maDV}">Delete
                             </a>
                         </button>
@@ -82,11 +82,16 @@
         <div class="mt-3">
             <a class="btn btn-success float-start" href="${pageContext.request.contextPath}/dich-vu/add">Thêm Dịch
                 Vụ</a>
-            <a class="btn btn-success float-end" href="${pageContext.request.contextPath}/khach-hang/list">Danh Sách Khách
+            <a class="btn btn-success float-end" href="${pageContext.request.contextPath}/khach-hang/list">Danh Sách
+                Khách
                 Hàng</a>
         </div>
     </div>
-
+    <script>
+        function ConfirmDelete() {
+            return confirm("Are you sure you want to delete?");
+        }
+    </script>
 </div>
 </body>
 </html>

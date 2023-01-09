@@ -24,8 +24,10 @@
                         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">MÁY
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/may/add">Thêm Máy</a></li>
-                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/may/list">Danh Sách Máy</a>
+                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/may/add">Thêm Máy</a>
+                            </li>
+                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/may/list">Danh Sách
+                                Máy</a>
                             </li>
                         </ul>
                     </div>
@@ -35,30 +37,38 @@
                             DỊCH VỤ
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/dich-vu/add">Thêm Dịch Vụ</a></li>
-                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/dich-vu/list">Danh Sách Dịch Vụ</a>
+                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/dich-vu/add">Thêm Dịch
+                                Vụ</a></li>
+                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/dich-vu/list">Danh
+                                Sách Dịch Vụ</a>
                             </li>
                         </ul>
                     </div>
                     <!-- Example single danger button -->
                     <div class="btn-group">
-                        <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown">KHÁCH HÀNG
+                        <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown">KHÁCH
+                            HÀNG
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/khach-hang/add">Thêm Khách Hàng</a></li>
-                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/khach-hang/list">Danh Sách Khách Hàng</a>
+                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/khach-hang/add">Thêm
+                                Khách Hàng</a></li>
+                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/khach-hang/list">Danh
+                                Sách Khách Hàng</a>
                             </li>
                         </ul>
                     </div>
                     <!-- Example single danger button -->
                     <div class="btn-group">
-                        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">áđấ
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">Sử
+                            Dụng Máy
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/may/add">Add</a></li>
-                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/may/list">List</a>
-                            </li>
-                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/may/edit">Edit</a>
+                            <li><a class="dropdown-item"
+                                   href="${pageContext.request.contextPath}/dang-ky-su-dung-may/add">Đăng Ký Sử Dụng
+                                Máy</a></li>
+                            <li><a class="dropdown-item"
+                                   href="${pageContext.request.contextPath}/dang-ky-su-dung-may/list">Danh Sách Sử Dụng
+                                Máy</a>
                             </li>
                         </ul>
                     </div>

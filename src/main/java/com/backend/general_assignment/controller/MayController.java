@@ -62,14 +62,14 @@ public class MayController {
             modelAndView = new ModelAndView("may/edit");
             return modelAndView;
         }
-        redirectAttributes.addFlashAttribute("msg_update", "cập nhật thành công máy " + mayEntity.getMaMay());
+        redirectAttributes.addFlashAttribute("msg_updateMay", "cập nhật thành công máy " + mayEntity.getMaMay());
         mayService.save(mayEntity);
         return "redirect:/may/list";
     }
 
     @GetMapping("/delete/{maMay}")
     public String deleteMay(final @PathVariable(name = "maMay") String maMay, final RedirectAttributes redirectAttributes) {
-        redirectAttributes.addFlashAttribute("msg_delete", "xóa thành công máy " + maMay);
+        redirectAttributes.addFlashAttribute("msg_deleteMay", "xóa thành công máy " + maMay);
         mayService.deleteByMaMay(maMay);
         return "redirect:/may/list";
     }

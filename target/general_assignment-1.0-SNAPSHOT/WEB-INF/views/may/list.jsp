@@ -17,11 +17,11 @@
 <div class="container-fluid w-50 text-center">
     <h3 class="text-center text-primary fw-bold mt-5">Danh Sách Máy</h3>
 
-    <c:if test="${not empty msg_delete}">
-        <span class="text-success text-center">${msg_delete}</span>
+    <c:if test="${not empty msg_deleteMay}">
+        <span class="text-success text-center">${msg_deleteMay}</span>
     </c:if>
-    <c:if test="${not empty msg_update}">
-        <span class="text-success text-center">${msg_update}</span>
+    <c:if test="${not empty msg_updateMay}">
+        <span class="text-success text-center">${msg_updateMay}</span>
     </c:if>
 
     <%--    search--%>
@@ -70,7 +70,9 @@
                     <td>
                         <button class="btn btn-danger">
                             <a style="text-decoration: none" class="text-white"
-                               href="${pageContext.request.contextPath}/may/delete/${item.maMay}">Delete
+                               href="${pageContext.request.contextPath}/may/delete/${item.maMay}"
+                               onclick="return ConfirmDelete();">
+                                Delete
                             </a>
                         </button>
                     </td>
@@ -84,6 +86,11 @@
                 Vụ</a>
         </div>
     </div>
+    <script>
+        function ConfirmDelete() {
+            return confirm("Are you sure you want to delete?");
+        }
+    </script>
 
 </div>
 </body>

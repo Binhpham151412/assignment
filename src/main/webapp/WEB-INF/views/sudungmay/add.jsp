@@ -24,7 +24,7 @@
                 <s:label path="suDungMay_khachHang.maKH" class="form-label">Mã Khách Hàng</s:label>
                 <s:select path="suDungMay_khachHang.maKH" class="form-select">
                     <c:forEach items="${khachhang}" var="item">
-                        <s:option value="${item.maKH}">${item.tenKH}</s:option>
+                        <s:option value="${item.maKH}">${item.maKH}</s:option>
                     </c:forEach>
                 </s:select>
                 <s:errors path="suDungMay_khachHang.maKH" type="text" class="text-danger"/>
@@ -55,9 +55,9 @@
                 <s:errors path="thoiGianSD" type="text" class="text-danger"/>
             </div
             <div class="">
-                <a class="btn btn-warning float-start" href="${pageContext.request.contextPath}/khach-hang/list">Trở
+                <a class="btn btn-warning float-start" href="${pageContext.request.contextPath}/dang-ky-su-dung-may/list">Trở
                     Lại</a>
-                <s:button type="submit" class="btn btn-warning float-end">Thêm Khách Hàng</s:button>
+                <s:button type="submit" class="btn btn-warning float-end">Đăng Ký Sử Dụng Máy</s:button>
             </div>
         </s:form>
     </div>

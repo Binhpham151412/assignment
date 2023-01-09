@@ -16,39 +16,44 @@
 <%@include file="../../../common/nav-bar.jsp" %>
 
 <div class="container-md w-50">
-    <h3 class="text-center text-warning fw-bold mt-5">Chỉnh Sửa Khách Hàng ${khachHangForm.maKH}</h3>
+    <h3 class="text-center text-warning fw-bold mt-5">Chỉnh Sửa Thông Tin Sử Dụng Máy </h3>
     <div class="card-body">
-        <s:form class="container-fluid" modelAttribute="khachHangForm" method="post"
-                action="${pageContext.request.contextPath}/khach-hang/edit/save">
+        <s:form class="container-fluid" modelAttribute="SDMForm" method="post"
+                action="${pageContext.request.contextPath}/dang-ky-su-dung-may/edit/save">
             <div class="col">
-                <s:label path="maKH" class="form-label">Mã Khách Hàng</s:label>
-                <s:input path="maKH" value="${khachHangForm.maKH}" readonly="true" type="text" class="form-control"/>
-                <s:errors path="maKH" type="text" class="text-danger"/>
+                <s:label path="suDungMay_khachHang.maKH" class="form-label">Mã Khách Hàng</s:label>
+                <s:input path="suDungMay_khachHang.maKH" type="text" readonly="true"
+                         value="${SDMForm.suDungMay_khachHang.maKH}"
+                         class="form-select"/>
+                <s:errors path="suDungMay_khachHang.maKH" type="text" class="text-danger"/>
             </div>
             <div class="col">
-                <s:label path="tenKH" class="form-label">Tên Khách Hàng</s:label>
-                <s:input path="tenKH" value="${khachHangForm.tenKH}"  type="text" class="form-control"/>
-                <s:errors path="tenKH" type="text" class="text-danger"/>
+                <s:label path="suDungMay_may.maMay" class="form-label">Mã Máy</s:label>
+                <s:input path="suDungMay_may.maMay" type="text" readonly="true" value="${SDMForm.suDungMay_may.maMay}"
+                         class="form-select"/>
+                <s:errors path="suDungMay_may.maMay" type="text" class="text-danger"/>
             </div>
             <div class="col">
-                <s:label path="soDT" class="form-label">Số Điện Thoại</s:label>
-                <s:input path="soDT" value="${khachHangForm.soDT}"  type="text" class="form-control"/>
-                <s:errors path="soDT" type="text" class="text-danger"/>
+                <s:label path="ngayBDSD" class="form-label">Ngày BDSD</s:label>
+                <s:input path="ngayBDSD" readonly="true" value="${SDMForm.ngayBDSD}" type="text" class="form-control"/>
+                <s:errors path="ngayBDSD" type="text" class="text-danger"/>
             </div>
             <div class="col">
-                <s:label path="email" class="form-label">Email</s:label>
-                <s:input path="email" value="${khachHangForm.email}"  type="text" class="form-control"/>
-                <s:errors path="email" type="text" class="text-danger"/>
+                <s:label path="gioBDSD" class="form-label">Giờ BDSD</s:label>
+                <s:input path="gioBDSD" readonly="true" value="${SDMForm.gioBDSD}" type="text" class="form-control"/>
+                <s:errors path="gioBDSD" type="text" class="text-danger"/>
             </div>
+
             <div class="col mb-3">
-                <s:label path="diaChi" class="form-label">Địa Chỉ</s:label>
-                <s:input path="diaChi" value="${khachHangForm.diaChi}"  type="text" class="form-control"/>
-                <s:errors path="diaChi" type="text" class="text-danger"/>
+                <s:label path="thoiGianSD" class="form-label">Thời Gian BDSD</s:label>
+                <s:input path="thoiGianSD" type="text" value="${SDMForm.thoiGianSD}" class="form-control"/>
+                <s:errors path="thoiGianSD" type="text" class="text-danger"/>
             </div
-            <div class="col mt-3">
+            <div class="">
                 <a class="btn btn-warning float-start"
-                   href="${pageContext.request.contextPath}/khach-hang/list">Trở Lại</a>
-                <s:button type="submit" class="btn btn-warning float-end">Chỉnh Sửa Khách Hàng</s:button>
+                   href="${pageContext.request.contextPath}/dang-ky-su-dung-may/list">Trở
+                    Lại</a>
+                <s:button type="submit" class="btn btn-warning float-end">Thêm Khách Hàng</s:button>
             </div>
         </s:form>
     </div>
