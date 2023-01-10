@@ -51,13 +51,11 @@
             </div
             <div class="">
                 <a class="btn btn-warning float-start"
-                   href="${pageContext.request.contextPath}/dang-ky-su-dung-may/list">Trở
-                    Lại</a>
+                   href="${pageContext.request.contextPath}/dang-ky-su-dung-may/list">Trở Lại</a>
                 <s:button type="submit" class="btn btn-warning float-end">Thêm Khách Hàng</s:button>
             </div>
         </s:form>
     </div>
-
 </div>
 </body>
 </html>

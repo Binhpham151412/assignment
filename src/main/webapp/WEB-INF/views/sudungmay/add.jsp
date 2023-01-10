@@ -16,7 +16,7 @@
 <%@include file="../../../common/nav-bar.jsp" %>
 
 <div class="container-md w-50">
-    <h3 class="text-center text-warning fw-bold mt-5">Thêm Khách Hàng</h3>
+    <h3 class="text-center text-secondary fw-bold mt-5">Đăng Ký Sử Dụng Máy</h3>
     <div class="card-body">
         <s:form class="container-fluid" modelAttribute="SDMForm" method="post"
                 action="${pageContext.request.contextPath}/dang-ky-su-dung-may/add">
@@ -55,9 +55,9 @@
                 <s:errors path="thoiGianSD" type="text" class="text-danger"/>
             </div
             <div class="">
-                <a class="btn btn-warning float-start" href="${pageContext.request.contextPath}/dang-ky-su-dung-may/list">Trở
+                <a class="btn btn-secondary float-start" href="${pageContext.request.contextPath}/dang-ky-su-dung-may/list">Trở
                     Lại</a>
-                <s:button type="submit" class="btn btn-warning float-end">Đăng Ký Sử Dụng Máy</s:button>
+                <s:button type="submit" class="btn btn-secondary float-end">Đăng Ký Sử Dụng Máy</s:button>
             </div>
         </s:form>
     </div>

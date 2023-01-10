@@ -20,8 +20,8 @@
     <c:if test="${not empty msg_deleteSDM}">
         <span class="text-secondary text-center">${msg_deleteSDM}</span>
     </c:if>
-    <c:if test="${not empty msg_update}">
-        <span class="text-secondary text-center">${msg_update}</span>
+    <c:if test="${not empty msg_updateSDM}">
+        <span class="text-secondary text-center">${msg_updateSDM}</span>
     </c:if>
 
     <%--    search--%>

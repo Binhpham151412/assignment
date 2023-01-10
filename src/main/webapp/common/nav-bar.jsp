@@ -6,7 +6,44 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<style>
+    .pagination {
+        display: inline-block;
+    }
 
+    .pagination a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        transition: background-color .3s;
+        border: 1px solid #ddd;
+        margin: 0 4px;
+    }
+
+    .pagination a.active {
+        background-color: #4CAF50;
+        color: white;
+        border: 1px solid #4CAF50;
+    }
+
+    .pagination a:hover:not(.active) {
+        background-color: #ddd;
+    }
+
+    table, td, th {
+        border: 1px solid black;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 50%;
+    }
+
+    td {
+        text-align: center;
+    }
+</style>
 <div class="container-fluid">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -72,46 +109,34 @@
                             </li>
                         </ul>
                     </div>
-
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/home">Home</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="" data-bs-toggle="dropdown" aria-expanded="false">
-                            May
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
+                    <!-- Example single danger button -->
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown">Sử
+                            Dụng Dịch Vụ
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item"
+                                   href="${pageContext.request.contextPath}/su-dung-dich-vu/add">Đăng Ký Sử Dụng
+                                Dịch Vụ</a></li>
+                            <li><a class="dropdown-item"
+                                   href="${pageContext.request.contextPath}/su-dung-dich-vu/list">Danh Sách Sử Dụng
+                                Dịch Vụ</a>
                             </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button"
-                           data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
+                    </div>
+                    <div>
+                        <a class="btn btn-primary"
+                           href="${pageContext.request.contextPath}/su-dung-dich-vu/tat-ca-thong-tin" role="button">Tất
+                            Cả Thông Tin</a>
+                    </div>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+
+                <%--                <form class="d-flex">--%>
+                <%--                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">--%>
+                <%--                    <button class="btn btn-outline-success" type="submit">Search</button>--%>
+                <%--                </form>--%>
             </div>
+            <h3 class="float-end text-primary">BinhPV7</h3>
         </div>
     </nav>
 </div>

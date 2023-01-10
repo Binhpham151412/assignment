@@ -35,10 +35,6 @@ public class DichVuService {
 
     @Transactional
     public List<DichVuEntity> listSearch(String keyword) {
-//        Sort sort = Sort.by(sortField);
-//        sort = sortDir.equals("asc") ? sort.ascending() : sort.descending();
-//
-//        Pageable pageable = PageRequest.of(pageNumber - 1, 2, sort);
         if (keyword != null) {
             return dichVuRepository.search(keyword);
         }

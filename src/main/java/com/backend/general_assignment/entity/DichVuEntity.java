@@ -11,7 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
 import java.util.List;
 
 @Getter
@@ -32,9 +32,9 @@ public class DichVuEntity {
     private int donViTinh;
 
     @NotBlank(message = "không được để trống")
-    @Pattern(regexp = "[0-9]+.[0-9]+", message = "Đơn giá phải là số lớn hơn 0")
+    @Positive(message = "Số lượng phải lớn hơn 0")
     private String donGia;
 
-    @OneToMany(mappedBy = "SuDungDV_maDV")
+    @OneToMany(mappedBy = "suDungDV_maDV")
     private List<SuDungDichVuEntity> suDungDichVuEntityList;
 }

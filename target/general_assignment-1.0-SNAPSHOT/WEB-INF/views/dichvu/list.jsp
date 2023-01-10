@@ -17,11 +17,16 @@
 <div class="container-fluid w-50 text-center">
     <h3 class="text-center text-success fw-bold mt-5">Danh Sách Dịch Vụ</h3>
 
-    <c:if test="${not empty msg_delete}">
-        <span class="text-success text-center">${msg_delete}</span>
+    <c:if test="${not empty msg_deleteDichVu}">
+        <span class="text-success text-center">${msg_deleteDichVu}</span>
     </c:if>
-    <c:if test="${not empty msg_update}">
-        <span class="text-success text-center">${msg_update}</span>
+
+    <c:if test="${not empty msg_saveDichVu}">
+        <span class="text-success text-center">${msg_saveDichVu}</span>
+    </c:if>
+
+    <c:if test="${not empty msg_updateDichVu}">
+        <span class="text-success text-center">${msg_updateDichVu}</span>
     </c:if>
 
     <%--    search--%>
@@ -83,8 +88,7 @@
             <a class="btn btn-success float-start" href="${pageContext.request.contextPath}/dich-vu/add">Thêm Dịch
                 Vụ</a>
             <a class="btn btn-success float-end" href="${pageContext.request.contextPath}/khach-hang/list">Danh Sách
-                Khách
-                Hàng</a>
+                Khách Hàng</a>
         </div>
     </div>
     <script>

@@ -31,14 +31,14 @@ public class KhachHangEntity {
     private String diaChi;
 
     @NotBlank(message = "Vui lòng nhập")
-    @Pattern(regexp = "^[0-9\\-\\+]{10,11}$", message = "Phone có 10-11 số")
+    @Pattern(regexp = "(84|0[3|5|7|8|9])+([0-9]{8})\\b", message = "Phone có 10-11 số, phải đúng định dạng")
     private String soDT;
 
     @NotBlank(message = "Vui lòng nhập")
     @Pattern(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", message = "không đúng định dạng email")
     private String email;
 
-    @OneToMany(mappedBy = "dichVu_khachHang")
+    @OneToMany(mappedBy = "suDungDV_maKH")
     private List<SuDungDichVuEntity> suDungDichVuEntityList;
 
     @OneToMany(mappedBy = "suDungMay_khachHang")

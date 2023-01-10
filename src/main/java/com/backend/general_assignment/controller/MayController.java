@@ -3,6 +3,7 @@ package com.backend.general_assignment.controller;
 import com.backend.general_assignment.entity.MayEntity;
 import com.backend.general_assignment.service.MayService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,9 +22,18 @@ public class MayController {
     private MayService mayService;
 
     @GetMapping("/list")
-    public ModelAndView getAllMayWithPageAble() {
+    public ModelAndView getAllMayWithPageAble(@RequestParam(defaultValue = "1") Integer page) {
+        Page<MayEntity> page2 = mayService.findAll(page);
+        List<MayEntity> list = page2.getContent();
         ModelAndView modelAndView = new ModelAndView("may/list");
-        modelAndView.addObject("listMay", mayService.findAll());
+        modelAndView.addObject("listMay", list);
+
+        int totalItems = page2.getNumberOfElements();
+        int totalPages = page2.getTotalPages();
+        modelAndView.addObject("totalPages", totalPages);
+        modelAndView.addObject("totalItems", totalItems);
+        modelAndView.addObject("currentPage", page);
+
         return modelAndView;
     }
 
@@ -44,7 +54,7 @@ public class MayController {
         }
 //        mayEntity.setTrangThai(0); khi cần mặc định lúc insert có giá trị bao nhiều thì mới thêm dòng này
         mayService.save(mayEntity);
-        return "redirect:/home";
+        return "redirect:/may/list";
     }
 
     @GetMapping("/edit/{maMay}")

@@ -11,6 +11,7 @@
     <title>Title</title>
     <%@include file="../../../common/link.jsp" %>
 </head>
+
 <body>
 
 <%@include file="../../../common/nav-bar.jsp" %>
@@ -84,6 +85,27 @@
             <a class="btn btn-primary float-start" href="${pageContext.request.contextPath}/may/add">Thêm Máy</a>
             <a class="btn btn-primary float-end" href="${pageContext.request.contextPath}/dich-vu/list">Danh Sách Dịch
                 Vụ</a>
+        </div>
+
+<%--        phân trang--%>
+        <div class="pagination">
+            <c:if test="${currentPage > 1}">
+                <a href="list?page=${currentPage-1}">Previous</a>
+            </c:if>
+            <c:forEach begin="1" end="${totalPages}" var="i">
+                <c:choose>
+                    <c:when test="${currentPage eq i}">
+                        <a class="active"> ${i} </a>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="list?page=${i}">${i}</a>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+
+            <c:if test="${currentPage lt totalPages}">
+                <a href="list?page=${currentPage+1}">Next</a>
+            </c:if>
         </div>
     </div>
     <script>

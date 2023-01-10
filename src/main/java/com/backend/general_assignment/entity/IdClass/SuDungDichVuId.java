@@ -15,9 +15,9 @@ import java.time.LocalTime;
 @AllArgsConstructor
 public class SuDungDichVuId implements Serializable {
 
-    private String SuDungDV_maDV;
+    private String suDungDV_maDV;
 
-    private String dichVu_khachHang;
+    private String suDungDV_maKH;
 
     private LocalDate ngaySD;
 

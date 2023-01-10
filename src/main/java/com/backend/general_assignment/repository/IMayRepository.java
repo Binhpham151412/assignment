@@ -1,6 +1,8 @@
 package com.backend.general_assignment.repository;
 
 import com.backend.general_assignment.entity.MayEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -17,6 +19,6 @@ public interface IMayRepository extends CrudRepository<MayEntity, String>, Pagin
     @Query(value = "SELECT * FROM may m WHERE CONCAT(m.maMay, ' ', m.trangThai, ' ', m.viTri) LIKE %?1%", nativeQuery = true)
     List<MayEntity> search(String keyword);
 
-//    @Query(value = "SELECT * FROM may m", nativeQuery = true)
-//    Page<MayEntity> findWithPageAble(String keyword, Pageable pageable);
+    Page<MayEntity> findAll(Pageable pageable);
+
 }

@@ -22,19 +22,19 @@ public class SuDungDichVuEntity {
     @Id
     @ManyToOne
     @JoinColumn(name = "maDV", nullable = false)
-    private DichVuEntity SuDungDV_maDV;
+    private DichVuEntity suDungDV_maDV;
 
     @Id
     @ManyToOne
     @JoinColumn(name = "maKH", nullable = false)
-    private KhachHangEntity dichVu_khachHang;
+    private KhachHangEntity suDungDV_maKH;
 
     @Id
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate ngaySD;
 
     @Id
-    @DateTimeFormat(pattern = "HH:mm")
+    @DateTimeFormat(pattern = "HH:mm:ss")
     private LocalTime gioSD;
 
     private int soLuong;

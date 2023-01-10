@@ -37,13 +37,14 @@ public class DichVuController {
 
     @PostMapping("/add")
     public Object addDichVu(final @Valid @ModelAttribute("dichVuForm") DichVuEntity dichVuEntity,
-                            final BindingResult bindingResult) {
+                            final BindingResult bindingResult,final RedirectAttributes redirectAttributes) {
         ModelAndView modelAndView;
         if (bindingResult.hasErrors()) {
             modelAndView = new ModelAndView("dichvu/add");
             return modelAndView;
         }
 //        mayEntity.setTrangThai(0); khi cần mặc định lúc insert có giá trị bao nhiều thì mới thêm dòng này
+        redirectAttributes.addFlashAttribute("msg_saveDichVu", "lưu thành công dịch vụ " + dichVuEntity.getMaDV());
         dichVuService.save(dichVuEntity);
         return "redirect:/dich-vu/list";
     }
@@ -63,14 +64,14 @@ public class DichVuController {
             modelAndView = new ModelAndView("dichvu/edit");
             return modelAndView;
         }
-        redirectAttributes.addFlashAttribute("msg_update", "cập nhật thành công dịch vụ " + dichVuEntity.getMaDV());
+        redirectAttributes.addFlashAttribute("msg_updateDichVu", "cập nhật thành công dịch vụ " + dichVuEntity.getMaDV());
         dichVuService.save(dichVuEntity);
         return "redirect:/dich-vu/list";
     }
 
     @GetMapping("/delete/{maDV}")
     public String deleteDichVu(final @PathVariable(name = "maDV") String maDV, final RedirectAttributes redirectAttributes) {
-        redirectAttributes.addFlashAttribute("msg_delete", "xóa thành công máy " + maDV);
+        redirectAttributes.addFlashAttribute("msg_deleteDichVu", "xóa thành công máy " + maDV);
         dichVuService.deleteByMaDV(maDV);
         return "redirect:/dich-vu/list";
     }

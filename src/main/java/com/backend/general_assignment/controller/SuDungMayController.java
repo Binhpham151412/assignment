@@ -32,7 +32,7 @@ public class SuDungMayController {
     private MayService mayService;
 
     @GetMapping("/list")
-    public ModelAndView getAllKhachHangWithPageAble() {
+    public ModelAndView getAllSDMWithPageAble() {
         ModelAndView modelAndView = new ModelAndView("sudungmay/list");
         modelAndView.addObject("listSDM", suDungMayService.findAll());
         return modelAndView;
@@ -87,12 +87,12 @@ public class SuDungMayController {
             modelAndView = new ModelAndView("sudungmay/edit");
             return modelAndView;
         }
-//        redirectAttributes.addFlashAttribute("msg_updateSDM", "cập nhật thành công dịch vụ "
-//                + suDungMayEntity.getSuDungMay_khachHang().getMaKH()
-//                + ", " + suDungMayEntity.getSuDungMay_khachHang().getTenKH()
-//                + ", " + suDungMayEntity.getSuDungMay_may().getMaMay()
-//                + ", " + suDungMayEntity.getNgayBDSD()
-//                + ", " + suDungMayEntity.getGioBDSD());
+        redirectAttributes.addFlashAttribute("msg_updateSDM", "cập nhật thành công dịch vụ "
+                + suDungMayEntity.getSuDungMay_khachHang().getMaKH()
+                + ", " + suDungMayEntity.getSuDungMay_khachHang().getTenKH()
+                + ", " + suDungMayEntity.getSuDungMay_may().getMaMay()
+                + ", " + suDungMayEntity.getNgayBDSD()
+                + ", " + suDungMayEntity.getGioBDSD());
 
         suDungMayService.save(suDungMayEntity);
         return "redirect:/dang-ky-su-dung-may/list";

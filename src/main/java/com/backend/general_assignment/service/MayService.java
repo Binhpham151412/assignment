@@ -3,6 +3,9 @@ package com.backend.general_assignment.service;
 import com.backend.general_assignment.entity.MayEntity;
 import com.backend.general_assignment.repository.IMayRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -11,45 +14,40 @@ import java.util.List;
 @Service
 public class MayService {
     @Autowired
-    private IMayRepository IMayRepository;
+    private IMayRepository mayRepository;
 
     @Transactional
     public List<MayEntity> findAll() {
-        return IMayRepository.findAll();
+        return mayRepository.findAll();
     }
 
     @Transactional
     public void save(MayEntity mayEntity) {
-        IMayRepository.save(mayEntity);
+        mayRepository.save(mayEntity);
     }
 
     @Transactional
     public MayEntity findByMaMay(String maMay) {
-        return IMayRepository.findByMaMay(maMay);
+        return mayRepository.findByMaMay(maMay);
     }
 
     @Transactional
     public void deleteByMaMay(String maMay) {
-        IMayRepository.deleteByMaMay(maMay);
+        mayRepository.deleteByMaMay(maMay);
     }
 
     @Transactional
     public List<MayEntity> listSearch(String keyword) {
-//        Sort sort = Sort.by(sortField);
-//        sort = sortDir.equals("asc") ? sort.ascending() : sort.descending();
-//
-//        Pageable pageable = PageRequest.of(pageNumber - 1, 2, sort);
+
         if (keyword != null) {
-            return IMayRepository.search(keyword);
+            return mayRepository.search(keyword);
         }
-        return IMayRepository.findAll();
+        return mayRepository.findAll();
     }
 
-//    public Page<MayEntity> findWithPageAble(String keyword, Pageable pageable) {
-//        return mayRepository.findWithPageAble(keyword, pageable);
-//    }
-//    @Transactional
-//    public List<MayEntity> findWithPageAble (){
-//
-//    }
+    public Page<MayEntity> findAll(int page){
+        int pageSize = 4;
+        Pageable pageable = PageRequest.of(page-1,pageSize);
+        return mayRepository.findAll(pageable);
+    }
 }
