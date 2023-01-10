@@ -6,44 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<style>
-    .pagination {
-        display: inline-block;
-    }
 
-    .pagination a {
-        color: black;
-        float: left;
-        padding: 8px 16px;
-        text-decoration: none;
-        transition: background-color .3s;
-        border: 1px solid #ddd;
-        margin: 0 4px;
-    }
-
-    .pagination a.active {
-        background-color: #4CAF50;
-        color: white;
-        border: 1px solid #4CAF50;
-    }
-
-    .pagination a:hover:not(.active) {
-        background-color: #ddd;
-    }
-
-    table, td, th {
-        border: 1px solid black;
-    }
-
-    table {
-        border-collapse: collapse;
-        width: 50%;
-    }
-
-    td {
-        text-align: center;
-    }
-</style>
 <div class="container-fluid">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">

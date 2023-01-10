@@ -22,7 +22,7 @@
                 action="${pageContext.request.contextPath}/dich-vu/edit/save">
             <div class="col">
                 <s:label path="maDV" class="form-label">Mã Dịch Vụ</s:label>
-                <s:input path="maDV" type="text" value="${dichVuForm.maDV}" class="form-control"/>
+                <s:input path="maDV" type="text" readonly="true" value="${dichVuForm.maDV}" class="form-control"/>
                 <s:errors path="maDV" type="text" class="text-danger"/>
             </div>
             <div class="col">

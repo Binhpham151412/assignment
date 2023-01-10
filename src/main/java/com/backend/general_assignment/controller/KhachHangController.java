@@ -2,9 +2,9 @@ package com.backend.general_assignment.controller;
 
 import com.backend.general_assignment.entity.DichVuEntity;
 import com.backend.general_assignment.entity.KhachHangEntity;
-import com.backend.general_assignment.service.DichVuService;
 import com.backend.general_assignment.service.KhachHangService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,9 +23,22 @@ public class KhachHangController {
     private KhachHangService khachHangService;
 
     @GetMapping("/list")
-    public ModelAndView getAllKhachHangWithPageAble() {
+    public ModelAndView getAllKhachHangWithPageAble(@RequestParam(defaultValue = "1") int page) {
+//        ModelAndView modelAndView = new ModelAndView("khachhang/list");
+//        modelAndView.addObject("listKH", khachHangService.findAll());
+//        return modelAndView;
+
+        Page<DichVuEntity> page2 = khachHangService.findAll(page);
+        List<DichVuEntity> list = page2.getContent();
         ModelAndView modelAndView = new ModelAndView("khachhang/list");
-        modelAndView.addObject("listKH", khachHangService.findAll());
+        modelAndView.addObject("listKH", list);
+
+        int totalItems = page2.getNumberOfElements();
+        int totalPages = page2.getTotalPages();
+        modelAndView.addObject("totalPages", totalPages);
+        modelAndView.addObject("totalItems", totalItems);
+        modelAndView.addObject("currentPage", page);
+
         return modelAndView;
     }
 
@@ -38,7 +51,7 @@ public class KhachHangController {
 
     @PostMapping("/add")
     public Object addKhachHang(final @Valid @ModelAttribute("khachHangForm") KhachHangEntity khachHangEntity,
-                            final BindingResult bindingResult) {
+                               final BindingResult bindingResult) {
         ModelAndView modelAndView;
         if (bindingResult.hasErrors()) {
             modelAndView = new ModelAndView("khachhang/add");
@@ -58,7 +71,7 @@ public class KhachHangController {
 
     @PostMapping("/edit/save")
     public Object saveUpdateKhachHang(final @Valid @ModelAttribute(name = "khachHangForm") KhachHangEntity khachHangEntity,
-                                   final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
+                                      final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
         ModelAndView modelAndView;
         if (bindingResult.hasErrors()) {
             modelAndView = new ModelAndView("khachhang/edit");

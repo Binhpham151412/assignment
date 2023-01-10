@@ -1,11 +1,13 @@
 package com.backend.general_assignment.controller;
 
 import com.backend.general_assignment.entity.IdClass.SuDungMayId;
+import com.backend.general_assignment.entity.MayEntity;
 import com.backend.general_assignment.entity.SuDungMayEntity;
 import com.backend.general_assignment.service.KhachHangService;
 import com.backend.general_assignment.service.MayService;
 import com.backend.general_assignment.service.SuDungMayService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -32,9 +34,22 @@ public class SuDungMayController {
     private MayService mayService;
 
     @GetMapping("/list")
-    public ModelAndView getAllSDMWithPageAble() {
+    public ModelAndView getAllSDMWithPageAble(@RequestParam(defaultValue = "1") int page) {
+//        ModelAndView modelAndView = new ModelAndView("sudungmay/list");
+//        modelAndView.addObject("listSDM", suDungMayService.findAll());
+//        return modelAndView;
+
+        Page<SuDungMayEntity> page2 = suDungMayService.findAll(page);
+        List<SuDungMayEntity> list = page2.getContent();
         ModelAndView modelAndView = new ModelAndView("sudungmay/list");
-        modelAndView.addObject("listSDM", suDungMayService.findAll());
+        modelAndView.addObject("listSDM", list);
+
+        int totalItems = page2.getNumberOfElements();
+        int totalPages = page2.getTotalPages();
+        modelAndView.addObject("totalPages", totalPages);
+        modelAndView.addObject("totalItems", totalItems);
+        modelAndView.addObject("currentPage", page);
+
         return modelAndView;
     }
 

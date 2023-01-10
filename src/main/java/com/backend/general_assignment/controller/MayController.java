@@ -22,7 +22,7 @@ public class MayController {
     private MayService mayService;
 
     @GetMapping("/list")
-    public ModelAndView getAllMayWithPageAble(@RequestParam(defaultValue = "1") Integer page) {
+    public ModelAndView getAllMayWithPageAble(@RequestParam(defaultValue = "1") int page) {
         Page<MayEntity> page2 = mayService.findAll(page);
         List<MayEntity> list = page2.getContent();
         ModelAndView modelAndView = new ModelAndView("may/list");

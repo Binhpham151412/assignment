@@ -87,26 +87,30 @@
                 Vụ</a>
         </div>
 
-<%--        phân trang--%>
-        <div class="pagination">
-            <c:if test="${currentPage > 1}">
-                <a href="list?page=${currentPage-1}">Previous</a>
-            </c:if>
-            <c:forEach begin="1" end="${totalPages}" var="i">
-                <c:choose>
-                    <c:when test="${currentPage eq i}">
-                        <a class="active"> ${i} </a>
-                    </c:when>
-                    <c:otherwise>
-                        <a href="list?page=${i}">${i}</a>
-                    </c:otherwise>
-                </c:choose>
-            </c:forEach>
+        <%--        phân trang--%>
+        <nav aria-label="Page navigation example">
+                <div class="pagination d-flex justify-content-center">
+                    <c:if test="${currentPage > 1}">
+                        <a class="page-link" href="list?page=${currentPage-1}">&laquo;</a>
+                    </c:if>
 
-            <c:if test="${currentPage lt totalPages}">
-                <a href="list?page=${currentPage+1}">Next</a>
-            </c:if>
-        </div>
+                    <c:forEach begin="1" end="${totalPages}" var="i">
+                        <c:choose>
+                            <c:when test="${currentPage eq i}">
+                                <a class="page-link"> ${i} </a>
+                            </c:when>
+                            <c:otherwise>
+                                <a class="page-link" href="list?page=${i}">${i}</a>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+
+                    <c:if test="${currentPage lt totalPages}">
+                        <a class="page-link" href="list?page=${currentPage+1}">&raquo;</a>
+                    </c:if>
+                </div>
+        </nav>
+
     </div>
     <script>
         function ConfirmDelete() {

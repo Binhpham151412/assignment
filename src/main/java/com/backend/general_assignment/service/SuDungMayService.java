@@ -1,11 +1,15 @@
 package com.backend.general_assignment.service;
 
 import com.backend.general_assignment.entity.IdClass.SuDungMayId;
+import com.backend.general_assignment.entity.MayEntity;
 import com.backend.general_assignment.entity.SuDungMayEntity;
 import com.backend.general_assignment.repository.IKhachHangRepository;
 import com.backend.general_assignment.repository.IMayRepository;
 import com.backend.general_assignment.repository.ISuDungMayRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -50,5 +54,12 @@ public class SuDungMayService {
             return suDungMayRepository.search(keyword);
         }
         return suDungMayRepository.findAll();
+    }
+
+    @Transactional
+    public Page<SuDungMayEntity> findAll(int page){
+        int pageSize = 4;
+        Pageable pageable = PageRequest.of(page-1,pageSize);
+        return suDungMayRepository.findAll(pageable);
     }
 }

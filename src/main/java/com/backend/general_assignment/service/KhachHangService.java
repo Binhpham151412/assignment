@@ -1,8 +1,12 @@
 package com.backend.general_assignment.service;
 
+import com.backend.general_assignment.entity.DichVuEntity;
 import com.backend.general_assignment.entity.KhachHangEntity;
 import com.backend.general_assignment.repository.IKhachHangRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -35,13 +39,16 @@ public class KhachHangService {
 
     @Transactional
     public List<KhachHangEntity> listSearch(String keyword) {
-//        Sort sort = Sort.by(sortField);
-//        sort = sortDir.equals("asc") ? sort.ascending() : sort.descending();
-//
-//        Pageable pageable = PageRequest.of(pageNumber - 1, 2, sort);
         if (keyword != null) {
             return khachHangRepository.search(keyword);
         }
         return khachHangRepository.findAll();
+    }
+
+    @Transactional
+    public Page<DichVuEntity> findAll(int page) {
+        int pageSize = 4;
+        Pageable pageable = PageRequest.of(page - 1, pageSize);
+        return khachHangRepository.findAll(pageable);
     }
 }

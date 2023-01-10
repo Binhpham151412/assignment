@@ -53,7 +53,23 @@
                 <td>${item.soDT}</td>
                 <td>${item.email}</td>
                 <td>${item.diaChi}</td>
-                </c:forEach>
+                <td>
+                    <button class="btn btn-success">
+                        <a style="text-decoration: none" class="text-white"
+                           href="${pageContext.request.contextPath}/khach-hang/edit/${item.maKH}">Update
+                        </a>
+                    </button>
+                </td>
+                <td>
+                    <button class="btn btn-danger">
+                        <a style="text-decoration: none" class="text-white"
+                           href="${pageContext.request.contextPath}/khach-hang/delete/${item.maKH}">Delete
+                        </a>
+                    </button>
+                </td>
+                </td>
+            </tr>
+            </c:forEach>
             </tbody>
         </table>
         <div class="mt-3">

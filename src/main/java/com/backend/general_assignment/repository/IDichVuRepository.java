@@ -1,6 +1,8 @@
 package com.backend.general_assignment.repository;
 
 import com.backend.general_assignment.entity.DichVuEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -16,6 +18,6 @@ public interface IDichVuRepository extends CrudRepository<DichVuEntity, String> 
     @Query(value = "SELECT * FROM dich_vu d WHERE CONCAT(d.maDV, ' ', d.donGia, ' ', d.donViTinh, ' ', d.tenDV) LIKE %?1%", nativeQuery = true)
     List<DichVuEntity> search(String keyword);
 
-
+    Page<DichVuEntity> findAll(Pageable pageable);
 
 }

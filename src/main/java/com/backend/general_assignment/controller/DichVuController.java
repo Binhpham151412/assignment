@@ -4,6 +4,7 @@ import com.backend.general_assignment.entity.DichVuEntity;
 import com.backend.general_assignment.entity.MayEntity;
 import com.backend.general_assignment.service.DichVuService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,9 +23,22 @@ public class DichVuController {
     private DichVuService dichVuService;
 
     @GetMapping("/list")
-    public ModelAndView getAllDichVuWithPageAble() {
+    public ModelAndView getAllDichVuWithPageAble(@RequestParam(defaultValue = "1") int page) {
+//        ModelAndView modelAndView = new ModelAndView("dichvu/list");
+//        modelAndView.addObject("listDV", dichVuService.findAll());
+//        return modelAndView;
+
+        Page<DichVuEntity> page2 = dichVuService.findAll(page);
+        List<DichVuEntity> list = page2.getContent();
         ModelAndView modelAndView = new ModelAndView("dichvu/list");
-        modelAndView.addObject("listDV", dichVuService.findAll());
+        modelAndView.addObject("listDV", list);
+
+        int totalItems = page2.getNumberOfElements();
+        int totalPages = page2.getTotalPages();
+        modelAndView.addObject("totalPages", totalPages);
+        modelAndView.addObject("totalItems", totalItems);
+        modelAndView.addObject("currentPage", page);
+
         return modelAndView;
     }
 
