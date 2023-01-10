@@ -23,7 +23,7 @@ public class KhachHangController {
     private KhachHangService khachHangService;
 
     @GetMapping("/list")
-    public ModelAndView getAllKhachHangWithPageAble(@RequestParam(defaultValue = "1") int page) {
+    public ModelAndView getAllKhachHangWithPageAble(final @RequestParam(defaultValue = "1") int page) {
 //        ModelAndView modelAndView = new ModelAndView("khachhang/list");
 //        modelAndView.addObject("listKH", khachHangService.findAll());
 //        return modelAndView;
@@ -51,13 +51,15 @@ public class KhachHangController {
 
     @PostMapping("/add")
     public Object addKhachHang(final @Valid @ModelAttribute("khachHangForm") KhachHangEntity khachHangEntity,
-                               final BindingResult bindingResult) {
+                               final BindingResult bindingResult,
+                               final RedirectAttributes redirectAttributes) {
         ModelAndView modelAndView;
         if (bindingResult.hasErrors()) {
             modelAndView = new ModelAndView("khachhang/add");
             return modelAndView;
         }
 //        mayEntity.setTrangThai(0); khi cần mặc định lúc insert có giá trị bao nhiều thì mới thêm dòng này
+        redirectAttributes.addFlashAttribute("msg_saveKH", "lưu thành công khách hàng " + khachHangEntity.getMaKH());
         khachHangService.save(khachHangEntity);
         return "redirect:/khach-hang/list";
     }
@@ -77,14 +79,14 @@ public class KhachHangController {
             modelAndView = new ModelAndView("khachhang/edit");
             return modelAndView;
         }
-        redirectAttributes.addFlashAttribute("msg_update", "cập nhật thành công dịch vụ " + khachHangEntity.getMaKH());
+        redirectAttributes.addFlashAttribute("msg_updateKH", "cập nhật thành công dịch vụ " + khachHangEntity.getMaKH());
         khachHangService.save(khachHangEntity);
         return "redirect:/khach-hang/list";
     }
 
     @GetMapping("/delete/{maKH}")
     public String deleteKhachHang(final @PathVariable(name = "maKH") String maKH, final RedirectAttributes redirectAttributes) {
-        redirectAttributes.addFlashAttribute("msg_delete", "xóa thành công máy " + maKH);
+        redirectAttributes.addFlashAttribute("msg_deleteKH", "xóa thành công máy " + maKH);
         khachHangService.deleteByMaKH(maKH);
         return "redirect:/khach-hang/list";
     }

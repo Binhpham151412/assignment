@@ -10,6 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -40,6 +41,7 @@ public class SuDungMayEntity {
     @JoinColumn(name = "maKH", nullable = false)
     private KhachHangEntity suDungMay_khachHang;
 
-    @NotBlank(message = "không được để trống")
-    private String thoiGianSD;
+    @NotNull(message = "không được để trống")
+    @Positive(message = "Số lượng phải lớn hơn 0")
+    private int thoiGianSD;
 }

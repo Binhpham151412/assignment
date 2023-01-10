@@ -3,6 +3,7 @@ package com.backend.general_assignment.controller;
 import com.backend.general_assignment.entity.IdClass.SuDungDichVuId;
 import com.backend.general_assignment.entity.MayEntity;
 import com.backend.general_assignment.entity.SuDungDichVuEntity;
+import com.backend.general_assignment.entity.SuDungMayEntity;
 import com.backend.general_assignment.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -35,11 +36,23 @@ public class SuDungDichVuController {
     private SuDungMayService suDungMayService;
 
     @GetMapping("/list")
-    public ModelAndView getAllSDDVWithPageAble() {
-        ModelAndView modelAndView = new ModelAndView("sudungdichvu/list");
-        modelAndView.addObject("listSDDV", suDungDichVuService.findAll());
-        return modelAndView;
+    public ModelAndView getAllSDDVWithPageAble(final @RequestParam(defaultValue = "1") int page) {
+//        ModelAndView modelAndView = new ModelAndView("sudungdichvu/list");
+//        modelAndView.addObject("listSDDV", suDungDichVuService.findAll());
+//        return modelAndView;
 
+        Page<SuDungDichVuEntity> page2 = suDungDichVuService.findAll(page);
+        List<SuDungDichVuEntity> list = page2.getContent();
+        ModelAndView modelAndView = new ModelAndView("sudungdichvu/list");
+        modelAndView.addObject("listSDDV", list);
+
+        int totalItems = page2.getNumberOfElements();
+        int totalPages = page2.getTotalPages();
+        modelAndView.addObject("totalPages", totalPages);
+        modelAndView.addObject("totalItems", totalItems);
+        modelAndView.addObject("currentPage", page);
+
+        return modelAndView;
     }
 
     @GetMapping("/add")
@@ -53,21 +66,23 @@ public class SuDungDichVuController {
 
     @PostMapping("/add")
     public String addSDM(final @Valid @ModelAttribute("SDDVForm") SuDungDichVuEntity suDungDichVuEntity,
-                         final BindingResult bindingResult) {
+                         final BindingResult bindingResult,
+                         final RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             return "redirect:/su-dung-dich-vu/add";
         }
         suDungDichVuEntity.setNgaySD(LocalDate.now());
         suDungDichVuEntity.setGioSD(LocalTime.now());
+        redirectAttributes.addFlashAttribute("msg_saveSDDV", "lưu thành công khách sử dụng dịch vụ");
         suDungDichVuService.save(suDungDichVuEntity);
         return "redirect:/su-dung-dich-vu/list";
     }
 
     @GetMapping(value = "/edit")
-    public ModelAndView findBySuDungMayId(@RequestParam(name = "idKH") String idKH,
-                                          @RequestParam(name = "idDV") String idDV,
-                                          @RequestParam(name = "ngaySD") String ngaySD,
-                                          @RequestParam(name = "gioSD") String gioSD) {
+    public ModelAndView findBySuDungMayId(final @RequestParam(name = "idKH") String idKH,
+                                          final @RequestParam(name = "idDV") String idDV,
+                                          final @RequestParam(name = "ngaySD") String ngaySD,
+                                          final @RequestParam(name = "gioSD") String gioSD) {
         ModelAndView modelAndView = new ModelAndView("sudungdichvu/edit");
         SuDungDichVuId suDungDichVuId = new SuDungDichVuId();
         suDungDichVuId.setSuDungDV_maKH(idKH);
@@ -83,13 +98,14 @@ public class SuDungDichVuController {
 
     @PostMapping("/edit/save")
     public Object saveUpdateSuDungMayId(final @Valid @ModelAttribute(name = "SDDVForm") SuDungDichVuEntity suDungDichVuEntity,
-                                        final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
+                                        final BindingResult bindingResult,
+                                        final RedirectAttributes redirectAttributes) {
         ModelAndView modelAndView;
         if (bindingResult.hasErrors()) {
             modelAndView = new ModelAndView("sudungdichvu/edit");
             return modelAndView;
         }
-        redirectAttributes.addFlashAttribute("msg_updateSDM", "cập nhật thành công dịch vụ "
+        redirectAttributes.addFlashAttribute("msg_updateSDDV", "cập nhật thành công dịch vụ "
                 + suDungDichVuEntity.getSuDungDV_maKH().getMaKH()
                 + ", " + suDungDichVuEntity.getSuDungDV_maDV().getMaDV()
                 + ", " + suDungDichVuEntity.getNgaySD()
@@ -101,10 +117,10 @@ public class SuDungDichVuController {
     }
 
     @GetMapping("/delete")
-    public String deleteSuDungMay(@RequestParam(name = "idKH") String idKH,
-                                  @RequestParam(name = "idDV") String idDV,
-                                  @RequestParam(name = "ngaySD") String ngaySD,
-                                  @RequestParam(name = "gioSD") String gioSD,
+    public String deleteSuDungMay(final @RequestParam(name = "idKH") String idKH,
+                                  final @RequestParam(name = "idDV") String idDV,
+                                  final @RequestParam(name = "ngaySD") String ngaySD,
+                                  final @RequestParam(name = "gioSD") String gioSD,
                                   final RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute("msg_deleteSDDV", "xóa thành công SDDV idKH: " + idKH);
         SuDungDichVuId suDungDichVuId = new SuDungDichVuId();
@@ -117,11 +133,11 @@ public class SuDungDichVuController {
     }
 
     @GetMapping("/search")
-    public ModelAndView searchDichVu(Model model, @Param("keyword") String keyword) {
+    public ModelAndView searchDichVu(final @Param("keyword") String keyword) {
         ModelAndView modelAndView = new ModelAndView("sudungdichvu/search");
         List<SuDungDichVuEntity> entityList = suDungDichVuService.listSearch(keyword);
-        model.addAttribute("listSearch", entityList);
-        model.addAttribute("keyword", keyword);
+        modelAndView.addObject("listSearch", entityList);
+        modelAndView.addObject("keyword", keyword);
         return modelAndView;
     }
 

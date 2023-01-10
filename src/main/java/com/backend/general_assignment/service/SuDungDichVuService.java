@@ -56,6 +56,13 @@ public class SuDungDichVuService {
     }
 
     @Transactional
+    public Page<SuDungDichVuEntity> findAll(int page){
+        int pageSize = 4;
+        Pageable pageable = PageRequest.of(page-1,pageSize);
+        return suDungDichVuRepository.findAll(pageable);
+    }
+
+    @Transactional
     public List<Object[]> findAllInfo() {
         return suDungDichVuRepository.findAllInfo();
     }

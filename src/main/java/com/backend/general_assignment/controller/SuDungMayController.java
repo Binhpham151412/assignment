@@ -34,7 +34,7 @@ public class SuDungMayController {
     private MayService mayService;
 
     @GetMapping("/list")
-    public ModelAndView getAllSDMWithPageAble(@RequestParam(defaultValue = "1") int page) {
+    public ModelAndView getAllSDMWithPageAble(final @RequestParam(defaultValue = "1") int page) {
 //        ModelAndView modelAndView = new ModelAndView("sudungmay/list");
 //        modelAndView.addObject("listSDM", suDungMayService.findAll());
 //        return modelAndView;
@@ -64,23 +64,24 @@ public class SuDungMayController {
 
     @PostMapping("/add")
     public String addSDM(final @Valid @ModelAttribute("SDMForm") SuDungMayEntity suDungMayEntity,
-                         final BindingResult bindingResult) {
+                         final BindingResult bindingResult,
+                         final RedirectAttributes redirectAttributes) {
 //        ModelAndView modelAndView;
         if (bindingResult.hasErrors()) {
-//            modelAndView = new ModelAndView("sudungmay/add");
             return "redirect:/dang-ky-su-dung-may/add";
         }
         suDungMayEntity.setNgayBDSD(LocalDate.now());
         suDungMayEntity.setGioBDSD(LocalTime.now());
+        redirectAttributes.addFlashAttribute("msg_saveSDM", "lưu thành công máy " + suDungMayEntity.getSuDungMay_may().getMaMay());
         suDungMayService.save(suDungMayEntity);
         return "redirect:/dang-ky-su-dung-may/list";
     }
 
     @GetMapping(value = "/edit")
-    public ModelAndView findBySuDungMayId(@RequestParam(name = "idKH") String idKH,
-                                          @RequestParam(name = "idMay") String idMay,
-                                          @RequestParam(name = "ngaySD") String ngaySD,
-                                          @RequestParam(name = "gioSD") String gioSD) {
+    public ModelAndView findBySuDungMayId(final @RequestParam(name = "idKH") String idKH,
+                                          final @RequestParam(name = "idMay") String idMay,
+                                          final @RequestParam(name = "ngaySD") String ngaySD,
+                                          final @RequestParam(name = "gioSD") String gioSD) {
         ModelAndView modelAndView = new ModelAndView("sudungmay/edit");
         SuDungMayId suDungMayId = new SuDungMayId();
         suDungMayId.setSuDungMay_khachHang(idKH);
@@ -96,7 +97,8 @@ public class SuDungMayController {
 
     @PostMapping("/edit/save")
     public Object saveUpdateSuDungMayId(final @Valid @ModelAttribute(name = "SDMForm") SuDungMayEntity suDungMayEntity,
-                                        final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
+                                        final BindingResult bindingResult,
+                                        final RedirectAttributes redirectAttributes) {
         ModelAndView modelAndView;
         if (bindingResult.hasErrors()) {
             modelAndView = new ModelAndView("sudungmay/edit");
@@ -104,7 +106,6 @@ public class SuDungMayController {
         }
         redirectAttributes.addFlashAttribute("msg_updateSDM", "cập nhật thành công dịch vụ "
                 + suDungMayEntity.getSuDungMay_khachHang().getMaKH()
-                + ", " + suDungMayEntity.getSuDungMay_khachHang().getTenKH()
                 + ", " + suDungMayEntity.getSuDungMay_may().getMaMay()
                 + ", " + suDungMayEntity.getNgayBDSD()
                 + ", " + suDungMayEntity.getGioBDSD());
@@ -130,11 +131,11 @@ public class SuDungMayController {
     }
 
     @GetMapping("/search")
-    public ModelAndView searchDichVu(Model model, @Param("keyword") String keyword) {
+    public ModelAndView searchDichVu(final @Param("keyword") String keyword) {
         ModelAndView modelAndView = new ModelAndView("sudungmay/search");
         List<SuDungMayEntity> entityList = suDungMayService.listSearch(keyword);
-        model.addAttribute("listSearch", entityList);
-        model.addAttribute("keyword", keyword);
+        modelAndView.addObject("listSearch", entityList);
+        modelAndView.addObject("keyword", keyword);
         return modelAndView;
     }
 }

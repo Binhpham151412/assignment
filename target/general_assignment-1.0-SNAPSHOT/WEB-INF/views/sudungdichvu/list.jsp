@@ -18,10 +18,13 @@
     <h3 class="text-center text-dark fw-bold mt-5">Danh Sách Đăng Ký Sử Dụng Dịch Vụ</h3>
 
     <c:if test="${not empty msg_deleteSDDV}">
-        <span class="text-secondary text-center">${msg_deleteSDDV}</span>
+        <span class="text-danger text-center">${msg_deleteSDDV}</span>
+    </c:if>
+    <c:if test="${not empty msg_saveSDDV}">
+        <span class="text-success text-center">${msg_saveSDDV}</span>
     </c:if>
     <c:if test="${not empty msg_updateSDDV}">
-        <span class="text-secondary text-center">${msg_updateSDDV}</span>
+        <span class="text-primary text-center">${msg_updateSDDV}</span>
     </c:if>
 
     <%--    search--%>

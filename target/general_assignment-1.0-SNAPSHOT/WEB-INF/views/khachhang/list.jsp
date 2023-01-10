@@ -14,14 +14,17 @@
 <body>
 
 <%@include file="../../../common/nav-bar.jsp" %>
-<div class="container-fluid w-50 text-center">
+<div class="container-fluid w-75 text-center">
     <h3 class="text-center text-warning fw-bold mt-5">Danh Sách Khách Hàng</h3>
 
-    <c:if test="${not empty msg_delete}">
-        <span class="text-warning text-center">${msg_delete}</span>
+    <c:if test="${not empty msg_deleteKH}">
+        <span class="text-danger text-center">${msg_deleteKH}</span>
     </c:if>
-    <c:if test="${not empty msg_update}">
-        <span class="text-warning text-center">${msg_update}</span>
+    <c:if test="${not empty msg_saveKH}">
+        <span class="text-success text-center">${msg_saveKH}</span>
+    </c:if>
+    <c:if test="${not empty msg_updateKH}">
+        <span class="text-primary text-center">${msg_updateKH}</span>
     </c:if>
 
     <%--    search--%>

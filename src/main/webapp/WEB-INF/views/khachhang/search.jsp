@@ -14,7 +14,7 @@
 <body>
 
 <%@include file="../../../common/nav-bar.jsp" %>
-<div class="container-fluid w-50 text-center">
+<div class="container-fluid w-75 text-center">
     <h3 class="text-center text-warning fw-bold mt-5">Danh Sách Khách Hàng</h3>
 
     <c:if test="${not empty msg_delete}">

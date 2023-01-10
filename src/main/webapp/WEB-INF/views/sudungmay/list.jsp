@@ -18,10 +18,13 @@
     <h3 class="text-center text-secondary fw-bold mt-5">Danh Sách Đăng Ký Sử Dụng Máy</h3>
 
     <c:if test="${not empty msg_deleteSDM}">
-        <span class="text-secondary text-center">${msg_deleteSDM}</span>
+        <span class="text-warning text-center">${msg_deleteSDM}</span>
+    </c:if>
+    <c:if test="${not empty msg_saveSDM}">
+        <span class="text-success text-center">${msg_saveSDM}</span>
     </c:if>
     <c:if test="${not empty msg_updateSDM}">
-        <span class="text-secondary text-center">${msg_updateSDM}</span>
+        <span class="text-primary text-center">${msg_updateSDM}</span>
     </c:if>
 
     <%--    search--%>

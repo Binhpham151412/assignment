@@ -99,7 +99,7 @@
                 <%--                    <button class="btn btn-outline-success" type="submit">Search</button>--%>
                 <%--                </form>--%>
             </div>
-            <h3 class="float-end text-primary">BinhPV7</h3>
+            <h3 class="float-end text-dark">BinhPV7</h3>
         </div>
     </nav>
 </div>

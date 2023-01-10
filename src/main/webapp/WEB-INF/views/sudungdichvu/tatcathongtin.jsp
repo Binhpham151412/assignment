@@ -17,7 +17,7 @@
 <div class="container-fluid">
     <div class="row">
         <div>
-            <h3 class="text-center text-danger fw-bold mt-5">Danh Sách Thông Tin Người Dùng</h3>
+            <h3 class="text-center text-danger fw-bold mt-5">Danh Sách Thông Tin Khách Hàng Sử Dụng Dịch Vụ</h3>
         </div>
         <div>
             <a class="btn btn-primary float-end col-sm-2" href="${pageContext.request.contextPath}/khach-hang/add">Thêm Người Dùng</a>

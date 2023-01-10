@@ -18,7 +18,7 @@
     <h3 class="text-center text-success fw-bold mt-5">Danh Sách Dịch Vụ</h3>
 
     <c:if test="${not empty msg_deleteDichVu}">
-        <span class="text-success text-center">${msg_deleteDichVu}</span>
+        <span class="text-danger text-center">${msg_deleteDichVu}</span>
     </c:if>
 
     <c:if test="${not empty msg_saveDichVu}">
@@ -26,7 +26,7 @@
     </c:if>
 
     <c:if test="${not empty msg_updateDichVu}">
-        <span class="text-success text-center">${msg_updateDichVu}</span>
+        <span class="text-primary text-center">${msg_updateDichVu}</span>
     </c:if>
 
     <%--    search--%>

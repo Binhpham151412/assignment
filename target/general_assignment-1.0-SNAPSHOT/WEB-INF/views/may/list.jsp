@@ -19,10 +19,15 @@
     <h3 class="text-center text-primary fw-bold mt-5">Danh Sách Máy</h3>
 
     <c:if test="${not empty msg_deleteMay}">
-        <span class="text-success text-center">${msg_deleteMay}</span>
+        <span class="text-danger text-center">${msg_deleteMay}</span>
     </c:if>
+
+    <c:if test="${not empty msg_saveMay}">
+        <span class="text-success text-center">${msg_saveMay}</span>
+    </c:if>
+
     <c:if test="${not empty msg_updateMay}">
-        <span class="text-success text-center">${msg_updateMay}</span>
+        <span class="text-primary text-center">${msg_updateMay}</span>
     </c:if>
 
     <%--    search--%>

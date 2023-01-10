@@ -22,6 +22,7 @@ import java.util.List;
 public class KhachHangEntity {
     @Id
     @NotBlank(message = "không được để trống")
+    @Pattern(regexp = "^KH[0-9]{5}$", message = "Mã KH có định dạng là KHxxxxx !")
     private String maKH;
 
     @NotBlank(message = "Vui lòng nhập")

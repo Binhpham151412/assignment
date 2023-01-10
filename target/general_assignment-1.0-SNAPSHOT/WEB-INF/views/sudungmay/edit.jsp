@@ -16,7 +16,7 @@
 <%@include file="../../../common/nav-bar.jsp" %>
 
 <div class="container-md w-50">
-    <h3 class="text-center text-warning fw-bold mt-5">Chỉnh Sửa Thông Tin Sử Dụng Máy </h3>
+    <h3 class="text-center text-secondary fw-bold mt-5">Chỉnh Sửa Thông Tin Sử Dụng Máy </h3>
     <div class="card-body">
         <s:form class="container-fluid" modelAttribute="SDMForm" method="post"
                 action="${pageContext.request.contextPath}/dang-ky-su-dung-may/edit/save">
@@ -45,14 +45,14 @@
             </div>
 
             <div class="col mb-3">
-                <s:label path="thoiGianSD" class="form-label">Thời Gian BDSD</s:label>
+                <s:label path="thoiGianSD" class="form-label">Thời Gian SD</s:label>
                 <s:input path="thoiGianSD" type="text" value="${SDMForm.thoiGianSD}" class="form-control"/>
                 <s:errors path="thoiGianSD" type="text" class="text-danger"/>
             </div
             <div class="">
-                <a class="btn btn-warning float-start"
+                <a class="btn btn-secondary float-start"
                    href="${pageContext.request.contextPath}/dang-ky-su-dung-may/list">Trở Lại</a>
-                <s:button type="submit" class="btn btn-warning float-end">Thêm Khách Hàng</s:button>
+                <s:button type="submit" class="btn btn-secondary float-end">Thêm Khách Hàng</s:button>
             </div>
         </s:form>
     </div>

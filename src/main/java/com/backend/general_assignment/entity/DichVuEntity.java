@@ -11,6 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 import java.util.List;
 
@@ -23,6 +24,7 @@ import java.util.List;
 public class DichVuEntity {
     @Id
     @NotBlank(message = "không được để trống")
+    @Pattern(regexp = "^DV[0-9]{3}$", message = "Mã Dịch Vụ có định dạng là DVxxx !")
     private String maDV;
 
     @NotBlank(message = "không được để trống")
@@ -32,7 +34,7 @@ public class DichVuEntity {
     private int donViTinh;
 
     @NotBlank(message = "không được để trống")
-    @Positive(message = "Số lượng phải lớn hơn 0")
+    @Positive(message = "Đơn giá phải lớn hơn 0")
     private String donGia;
 
     @OneToMany(mappedBy = "suDungDV_maDV")

@@ -22,7 +22,7 @@ public class MayController {
     private MayService mayService;
 
     @GetMapping("/list")
-    public ModelAndView getAllMayWithPageAble(@RequestParam(defaultValue = "1") int page) {
+    public ModelAndView getAllMayWithPageAble(final @RequestParam(defaultValue = "1") int page) {
         Page<MayEntity> page2 = mayService.findAll(page);
         List<MayEntity> list = page2.getContent();
         ModelAndView modelAndView = new ModelAndView("may/list");
@@ -46,19 +46,21 @@ public class MayController {
 
     @PostMapping("/add")
     public Object addMay(final @Valid @ModelAttribute("mayForm") MayEntity mayEntity,
-                         final BindingResult bindingResult) {
+                         final BindingResult bindingResult,
+                         final RedirectAttributes redirectAttributes) {
         ModelAndView modelAndView;
         if (bindingResult.hasErrors()) {
             modelAndView = new ModelAndView("may/add");
             return modelAndView;
         }
 //        mayEntity.setTrangThai(0); khi cần mặc định lúc insert có giá trị bao nhiều thì mới thêm dòng này
+        redirectAttributes.addFlashAttribute("msg_saveMay", "lưu thành công máy " + mayEntity.getMaMay());
         mayService.save(mayEntity);
         return "redirect:/may/list";
     }
 
     @GetMapping("/edit/{maMay}")
-    public ModelAndView findByMaMay(@PathVariable(name = "maMay") String maMay) {
+    public ModelAndView findByMaMay(final @PathVariable(name = "maMay") String maMay) {
         ModelAndView modelAndView = new ModelAndView("may/edit");
         modelAndView.addObject("mayForm", mayService.findByMaMay(maMay));
         return modelAndView;
@@ -66,7 +68,8 @@ public class MayController {
 
     @PostMapping("/edit/save")
     public Object saveUpdateMay(final @Valid @ModelAttribute(name = "mayForm") MayEntity mayEntity,
-                             final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
+                                final BindingResult bindingResult,
+                                final RedirectAttributes redirectAttributes) {
         ModelAndView modelAndView;
         if (bindingResult.hasErrors()) {
             modelAndView = new ModelAndView("may/edit");
@@ -78,18 +81,19 @@ public class MayController {
     }
 
     @GetMapping("/delete/{maMay}")
-    public String deleteMay(final @PathVariable(name = "maMay") String maMay, final RedirectAttributes redirectAttributes) {
+    public String deleteMay(final @PathVariable(name = "maMay") String maMay,
+                            final RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute("msg_deleteMay", "xóa thành công máy " + maMay);
         mayService.deleteByMaMay(maMay);
         return "redirect:/may/list";
     }
 
     @GetMapping("/search")
-    public ModelAndView searchMay(Model model, @Param("keyword") String keyword) {
+    public ModelAndView searchMay(final @Param("keyword") String keyword) {
         ModelAndView modelAndView = new ModelAndView("may/search");
         List<MayEntity> entityList = mayService.listSearch(keyword);
-        model.addAttribute("listSearch", entityList);
-        model.addAttribute("keyword", keyword);
+        modelAndView.addObject("listSearch", entityList);
+        modelAndView.addObject("keyword", keyword);
         return modelAndView;
     }
 }
