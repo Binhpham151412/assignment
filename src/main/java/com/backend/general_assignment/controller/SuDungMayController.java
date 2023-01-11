@@ -66,7 +66,6 @@ public class SuDungMayController {
         ModelAndView modelAndView;
         if (bindingResult.hasErrors()) {
             modelAndView = new ModelAndView("sudungmay/add");
-            modelAndView.addObject("SDMForm", new SuDungMayEntity());
             modelAndView.addObject("khachhang", khachHangService.findAll());
             modelAndView.addObject("may", mayService.findAll());
             return modelAndView;

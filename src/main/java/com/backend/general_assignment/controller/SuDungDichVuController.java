@@ -68,7 +68,6 @@ public class SuDungDichVuController {
         ModelAndView modelAndView;
         if (bindingResult.hasErrors()) {
             modelAndView = new ModelAndView("sudungdichvu/add");
-            modelAndView.addObject("SDDVForm", new SuDungDichVuEntity());
             modelAndView.addObject("khachhang", khachHangService.findAll());
             modelAndView.addObject("dichvu", dichVuService.findAll());
             return modelAndView;

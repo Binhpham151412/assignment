@@ -79,6 +79,7 @@ public class DichVuController {
         ModelAndView modelAndView;
         if (bindingResult.hasErrors()) {
             modelAndView = new ModelAndView("dichvu/add");
+//            modelAndView.addObject("dichVuForm", new DichVuEntity());
             return modelAndView;
         }
 //        mayEntity.setTrangThai(0); khi cần mặc định lúc insert có giá trị bao nhiều thì mới thêm dòng này

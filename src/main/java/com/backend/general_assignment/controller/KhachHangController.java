@@ -50,13 +50,13 @@ public class KhachHangController {
     }
 
     @PostMapping("/add")
-    public Object addKhachHang(final @Valid @ModelAttribute("khachHangForm") KhachHangEntity khachHangEntity,
+    public String addKhachHang(final @Valid @ModelAttribute("khachHangForm") KhachHangEntity khachHangEntity,
                                final BindingResult bindingResult,
                                final RedirectAttributes redirectAttributes) {
-        ModelAndView modelAndView;
+//        ModelAndView modelAndView;
         if (bindingResult.hasErrors()) {
-            modelAndView = new ModelAndView("khachhang/add");
-            return modelAndView;
+//            modelAndView = new ModelAndView("khachhang/add");
+            return "khachhang/add";
         }
 //        mayEntity.setTrangThai(0); khi cần mặc định lúc insert có giá trị bao nhiều thì mới thêm dòng này
         redirectAttributes.addFlashAttribute("msg_saveKH", "lưu thành công khách hàng " + khachHangEntity.getMaKH());

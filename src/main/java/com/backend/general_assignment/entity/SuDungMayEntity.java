@@ -40,7 +40,8 @@ public class SuDungMayEntity {
     private KhachHangEntity suDungMay_khachHang;
 
     @NotNull(message = "không được để trống")
-    @Positive(message = "Số lượng phải lớn hơn 0")
+//    @Positive(message = "Số lượng phải lớn hơn 0")
+    @Min(value = 0, message = "Số lượng phải lớn hơn 0as")
     private String thoiGianSD;
 
 }
