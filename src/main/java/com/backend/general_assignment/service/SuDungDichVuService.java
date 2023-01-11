@@ -1,11 +1,10 @@
 package com.backend.general_assignment.service;
 
 import com.backend.general_assignment.entity.IdClass.SuDungDichVuId;
-import com.backend.general_assignment.entity.IdClass.SuDungMayId;
-import com.backend.general_assignment.entity.MayEntity;
 import com.backend.general_assignment.entity.SuDungDichVuEntity;
-import com.backend.general_assignment.entity.SuDungMayEntity;
-import com.backend.general_assignment.repository.*;
+import com.backend.general_assignment.repository.IDichVuRepository;
+import com.backend.general_assignment.repository.IKhachHangRepository;
+import com.backend.general_assignment.repository.ISuDungDichVuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -56,9 +55,9 @@ public class SuDungDichVuService {
     }
 
     @Transactional
-    public Page<SuDungDichVuEntity> findAll(int page){
+    public Page<SuDungDichVuEntity> findAll(int page) {
         int pageSize = 4;
-        Pageable pageable = PageRequest.of(page-1,pageSize);
+        Pageable pageable = PageRequest.of(page - 1, pageSize);
         return suDungDichVuRepository.findAll(pageable);
     }
 

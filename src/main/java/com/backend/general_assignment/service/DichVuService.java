@@ -1,7 +1,6 @@
 package com.backend.general_assignment.service;
 
 import com.backend.general_assignment.entity.DichVuEntity;
-import com.backend.general_assignment.entity.MayEntity;
 import com.backend.general_assignment.repository.IDichVuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

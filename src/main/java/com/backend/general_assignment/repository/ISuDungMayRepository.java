@@ -1,7 +1,6 @@
 package com.backend.general_assignment.repository;
 
 import com.backend.general_assignment.entity.IdClass.SuDungMayId;
-import com.backend.general_assignment.entity.MayEntity;
 import com.backend.general_assignment.entity.SuDungMayEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

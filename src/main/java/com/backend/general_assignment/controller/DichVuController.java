@@ -1,7 +1,6 @@
 package com.backend.general_assignment.controller;
 
 import com.backend.general_assignment.entity.DichVuEntity;
-import com.backend.general_assignment.entity.MayEntity;
 import com.backend.general_assignment.service.DichVuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -51,7 +50,7 @@ public class DichVuController {
 
     @PostMapping("/add")
     public Object addDichVu(final @Valid @ModelAttribute("dichVuForm") DichVuEntity dichVuEntity,
-                            final BindingResult bindingResult,final RedirectAttributes redirectAttributes) {
+                            final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
         ModelAndView modelAndView;
         if (bindingResult.hasErrors()) {
             modelAndView = new ModelAndView("dichvu/add");
@@ -92,7 +91,7 @@ public class DichVuController {
 
     @GetMapping("/search")
     public ModelAndView searchDichVu(Model model, @Param("keyword") String keyword) {
-        ModelAndView modelAndView =new ModelAndView("dichvu/search");
+        ModelAndView modelAndView = new ModelAndView("dichvu/search");
         List<DichVuEntity> entityList = dichVuService.listSearch(keyword);
         model.addAttribute("listSearch", entityList);
         model.addAttribute("keyword", keyword);

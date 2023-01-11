@@ -45,9 +45,9 @@ public class MayService {
         return mayRepository.findAll();
     }
 
-    public Page<MayEntity> findAll(int page){
+    public Page<MayEntity> findAll(int page) {
         int pageSize = 4;
-        Pageable pageable = PageRequest.of(page-1,pageSize);
+        Pageable pageable = PageRequest.of(page - 1, pageSize);
         return mayRepository.findAll(pageable);
     }
 }

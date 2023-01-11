@@ -1,7 +1,6 @@
 package com.backend.general_assignment.service;
 
 import com.backend.general_assignment.entity.IdClass.SuDungMayId;
-import com.backend.general_assignment.entity.MayEntity;
 import com.backend.general_assignment.entity.SuDungMayEntity;
 import com.backend.general_assignment.repository.IKhachHangRepository;
 import com.backend.general_assignment.repository.IMayRepository;
@@ -57,9 +56,9 @@ public class SuDungMayService {
     }
 
     @Transactional
-    public Page<SuDungMayEntity> findAll(int page){
+    public Page<SuDungMayEntity> findAll(int page) {
         int pageSize = 4;
-        Pageable pageable = PageRequest.of(page-1,pageSize);
+        Pageable pageable = PageRequest.of(page - 1, pageSize);
         return suDungMayRepository.findAll(pageable);
     }
 }

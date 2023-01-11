@@ -10,14 +10,14 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletRegistration;
 
 public class WebAppInitializer
-    implements WebApplicationInitializer {
+        implements WebApplicationInitializer {
 
     public void onStartup(ServletContext servletContext) {
         AnnotationConfigWebApplicationContext appContext = new AnnotationConfigWebApplicationContext();
         appContext.register(com.backend.general_assignment.config.WebMvcConfig.class);
 
         ServletRegistration.Dynamic dispatcher = servletContext.addServlet(
-            "SpringDispatcher", new DispatcherServlet(appContext));
+                "SpringDispatcher", new DispatcherServlet(appContext));
         dispatcher.setLoadOnStartup(1);
         dispatcher.addMapping("/");
 
