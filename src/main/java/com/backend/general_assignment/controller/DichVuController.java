@@ -21,6 +21,14 @@ public class DichVuController {
     @Autowired
     private DichVuService dichVuService;
 
+    /**
+     * show list Dich Vu and paging
+     *
+     * @param page auto
+     * @return list.jsp
+     * @author BinhPV7
+     * @since 11-01-2023
+     */
     @GetMapping("/list")
     public ModelAndView getAllDichVuWithPageAble(@RequestParam(defaultValue = "1") int page) {
 //        ModelAndView modelAndView = new ModelAndView("dichvu/list");
@@ -41,6 +49,13 @@ public class DichVuController {
         return modelAndView;
     }
 
+    /**
+     * show form input information for DichVu
+     *
+     * @return add.jsp
+     * @author BinhPV7
+     * @since 11-01-2023
+     */
     @GetMapping("/add")
     public ModelAndView showAddFormDichVu() {
         ModelAndView modelAndView = new ModelAndView("dichvu/add");
@@ -48,6 +63,16 @@ public class DichVuController {
         return modelAndView;
     }
 
+    /**
+     * before add dichvu validate , if validate not null return add.jsp or redirect:/dich-list when validate is null
+     *
+     * @param dichVuEntity       dichVuEntity
+     * @param bindingResult      bindingResult
+     * @param redirectAttributes redirectAttributes
+     * @return add.jsp if validate not null or redirect:/dich-vu/list if validate is null
+     * @author BinhPV7
+     * @since 11-01-2023
+     */
     @PostMapping("/add")
     public Object addDichVu(final @Valid @ModelAttribute("dichVuForm") DichVuEntity dichVuEntity,
                             final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
@@ -62,6 +87,14 @@ public class DichVuController {
         return "redirect:/dich-vu/list";
     }
 
+    /**
+     * show form input edit DichVu
+     *
+     * @param maDV maDV
+     * @return modelAndView
+     * @author BinhPV7
+     * @since 11-01-2023
+     */
     @GetMapping("/edit/{maDV}")
     public ModelAndView findByMaDV(@PathVariable(name = "maDV") String maDV) {
         ModelAndView modelAndView = new ModelAndView("dichvu/edit");
@@ -69,13 +102,19 @@ public class DichVuController {
         return modelAndView;
     }
 
+    /**
+     * @param dichVuEntity       dichVuEntity
+     * @param bindingResult      bindingResult
+     * @param redirectAttributes redirectAttributes
+     * @return redirect:/dichvu/edit if validate is not null or redirect:/dich-vu/list when validate is null
+     * @author BinhPV7
+     * @since 11-01-2023
+     */
     @PostMapping("/edit/save")
-    public Object saveUpdateDichVu(final @Valid @ModelAttribute(name = "dichVuForm") DichVuEntity dichVuEntity,
+    public String saveUpdateDichVu(final @Valid @ModelAttribute(name = "dichVuForm") DichVuEntity dichVuEntity,
                                    final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
-        ModelAndView modelAndView;
         if (bindingResult.hasErrors()) {
-            modelAndView = new ModelAndView("dichvu/edit");
-            return modelAndView;
+            return "redirect:/dich-vu/edit";
         }
         redirectAttributes.addFlashAttribute("msg_updateDichVu", "cập nhật thành công dịch vụ " + dichVuEntity.getMaDV());
         dichVuService.save(dichVuEntity);

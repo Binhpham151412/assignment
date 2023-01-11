@@ -41,5 +41,5 @@ public class SuDungDichVuEntity {
 
     @NotNull(message = "không được để trống")
     @Positive(message = "số lượng phải lớn hơn 0")
-    private int soLuong;
+    private String soLuong;
 }

@@ -6,9 +6,11 @@ import com.backend.general_assignment.service.KhachHangService;
 import com.backend.general_assignment.service.MayService;
 import com.backend.general_assignment.service.SuDungMayService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -60,16 +62,25 @@ public class SuDungMayController {
     }
 
     @PostMapping("/add")
-    public String addSDM(final @Valid @ModelAttribute("SDMForm") SuDungMayEntity suDungMayEntity,
+    public Object addSDM(final @Valid @ModelAttribute("SDMForm") SuDungMayEntity suDungMayEntity,
                          final BindingResult bindingResult,
                          final RedirectAttributes redirectAttributes) {
-//        ModelAndView modelAndView;
+        ModelAndView modelAndView;
         if (bindingResult.hasErrors()) {
-            return "redirect:/dang-ky-su-dung-may/add";
+            modelAndView = new ModelAndView("sudungmay/add");
+            modelAndView.addObject("SDMForm", new SuDungMayEntity());
+            modelAndView.addObject("khachhang", khachHangService.findAll());
+            modelAndView.addObject("may", mayService.findAll());
+            return modelAndView;
         }
         suDungMayEntity.setNgayBDSD(LocalDate.now());
         suDungMayEntity.setGioBDSD(LocalTime.now());
-        redirectAttributes.addFlashAttribute("msg_saveSDM", "lưu thành công máy " + suDungMayEntity.getSuDungMay_may().getMaMay());
+        redirectAttributes.addFlashAttribute("msg_saveSDM", "lưu thành công khách sử dụng máy "
+                + suDungMayEntity.getSuDungMay_khachHang().getMaKH()
+                + ", " + suDungMayEntity.getSuDungMay_may().getMaMay()
+                + ", " + suDungMayEntity.getNgayBDSD()
+                + ", " + suDungMayEntity.getGioBDSD()
+                + ", " + suDungMayEntity.getThoiGianSD());
         suDungMayService.save(suDungMayEntity);
         return "redirect:/dang-ky-su-dung-may/list";
     }
@@ -93,9 +104,9 @@ public class SuDungMayController {
     }
 
     @PostMapping("/edit/save")
-    public Object saveUpdateSuDungMayId(final @Valid @ModelAttribute(name = "SDMForm") SuDungMayEntity suDungMayEntity,
-                                        final BindingResult bindingResult,
-                                        final RedirectAttributes redirectAttributes) {
+    public Object saveUpdateSuDungMayId(@Valid @ModelAttribute(name = "SDMForm") SuDungMayEntity suDungMayEntity,
+                                        BindingResult bindingResult,
+                                        RedirectAttributes redirectAttributes) {
         ModelAndView modelAndView;
         if (bindingResult.hasErrors()) {
             modelAndView = new ModelAndView("sudungmay/edit");

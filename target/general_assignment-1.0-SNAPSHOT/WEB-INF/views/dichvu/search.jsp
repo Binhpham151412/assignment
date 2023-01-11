@@ -48,7 +48,7 @@
                 <tr>
                     <td>${item.maDV}</td>
                     <td>${item.tenDV}</td>
-                    <td>${item.donViTinh}</td>
+<%--                    <td>${item.donViTinh}</td>--%>
                     <c:choose>
                         <c:when test="${item.donViTinh==0}">
                             <td>VND</td>
@@ -60,7 +60,7 @@
                             <td>¥</td>
                         </c:otherwise>
                     </c:choose>
-                    <td>${item.donViTinh}</td>
+                    <td>${item.donGia}</td>
                     <td>
                         <button class="btn btn-success">
                             <a style="text-decoration: none" class="text-white"

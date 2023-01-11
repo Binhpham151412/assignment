@@ -41,7 +41,7 @@
             </div>
             <div class="col mb-3">
                 <s:label path="donGia" class="form-label">Đơn Giá</s:label>
-                <s:input path="donGia" type="text" class="form-control"/>
+                <s:input path="donGia" type="number" class="form-control"/>
                 <s:errors path="donGia" type="text" class="text-danger"/>
             </div
             <div class="">

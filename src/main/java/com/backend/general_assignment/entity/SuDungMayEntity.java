@@ -8,8 +8,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -42,5 +41,6 @@ public class SuDungMayEntity {
 
     @NotNull(message = "không được để trống")
     @Positive(message = "Số lượng phải lớn hơn 0")
-    private int thoiGianSD;
+    private String thoiGianSD;
+
 }

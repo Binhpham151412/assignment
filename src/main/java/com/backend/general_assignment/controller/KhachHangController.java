@@ -72,12 +72,10 @@ public class KhachHangController {
     }
 
     @PostMapping("/edit/save")
-    public Object saveUpdateKhachHang(final @Valid @ModelAttribute(name = "khachHangForm") KhachHangEntity khachHangEntity,
+    public String saveUpdateKhachHang(final @Valid @ModelAttribute(name = "khachHangForm") KhachHangEntity khachHangEntity,
                                       final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
-        ModelAndView modelAndView;
         if (bindingResult.hasErrors()) {
-            modelAndView = new ModelAndView("khachhang/edit");
-            return modelAndView;
+            return "redirect:/khach-hang/edit";
         }
         redirectAttributes.addFlashAttribute("msg_updateKH", "cập nhật thành công dịch vụ " + khachHangEntity.getMaKH());
         khachHangService.save(khachHangEntity);

@@ -62,15 +62,25 @@ public class SuDungDichVuController {
     }
 
     @PostMapping("/add")
-    public String addSDM(final @Valid @ModelAttribute("SDDVForm") SuDungDichVuEntity suDungDichVuEntity,
+    public Object addSDM(final @Valid @ModelAttribute("SDDVForm") SuDungDichVuEntity suDungDichVuEntity,
                          final BindingResult bindingResult,
                          final RedirectAttributes redirectAttributes) {
+        ModelAndView modelAndView;
         if (bindingResult.hasErrors()) {
-            return "redirect:/su-dung-dich-vu/add";
+            modelAndView = new ModelAndView("sudungdichvu/add");
+            modelAndView.addObject("SDDVForm", new SuDungDichVuEntity());
+            modelAndView.addObject("khachhang", khachHangService.findAll());
+            modelAndView.addObject("dichvu", dichVuService.findAll());
+            return modelAndView;
         }
         suDungDichVuEntity.setNgaySD(LocalDate.now());
         suDungDichVuEntity.setGioSD(LocalTime.now());
-        redirectAttributes.addFlashAttribute("msg_saveSDDV", "lưu thành công khách sử dụng dịch vụ");
+        redirectAttributes.addFlashAttribute("msg_saveSDDV", "lưu thành công khách sử dụng dịch vụ "
+                + suDungDichVuEntity.getSuDungDV_maKH().getMaKH()
+                + ", " + suDungDichVuEntity.getSuDungDV_maDV().getMaDV()
+                + ", " + suDungDichVuEntity.getNgaySD()
+                + ", " + suDungDichVuEntity.getGioSD()
+                + ", " + suDungDichVuEntity.getSoLuong());
         suDungDichVuService.save(suDungDichVuEntity);
         return "redirect:/su-dung-dich-vu/list";
     }

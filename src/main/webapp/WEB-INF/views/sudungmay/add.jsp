@@ -51,7 +51,7 @@
 
             <div class="col mb-3">
                 <s:label path="thoiGianSD" class="form-label">Thời Gian Sử Dụng</s:label>
-                <s:input path="thoiGianSD" type="text" class="form-control"/>
+                <s:input path="thoiGianSD" type="number" class="form-control"/>
                 <s:errors path="thoiGianSD" type="text" class="text-danger"/>
             </div
             <div class="">
